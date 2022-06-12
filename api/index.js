@@ -12,4 +12,5 @@ app.use('/api/user', user);
 
 app.listen(api.port , () => {
     console.log(`Servidor corriendo en el puerto => ${api.port}`);
+
 });
