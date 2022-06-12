@@ -1,19 +1,23 @@
 import pkg from 'pg'
-const {Pool} = pkg;
 import { Sequelize } from 'sequelize';
+const { Pool } = pkg;
 import { db } from '../config.js';
-async function getConnection() {
+
+
+async function getConnection(){
     const client = new Pool({
         user: db.user,
         host: db.host,
         database: db.database,
         password: db.password,
-        port: db.port,  
+        port: db.port
     });
-    await client.connect();
-    return client;
+
+    await Pool.connect();
+    return Pool;
 }
-const sequelizeClient = new Sequelize(db.database, db.user, db.password,{
+
+const SequelizeClient = new Sequelize(db.database, db.user, db.password,{
     host: db.host,
     dialect: 'postgres',
     dialectOptions: {
@@ -24,13 +28,12 @@ const sequelizeClient = new Sequelize(db.database, db.user, db.password,{
       }
 });
 
-
-sequelizeClient.authenticate()
+SequelizeClient.authenticate()
     .then(() => {
-        console.log('Conectado')
+        console.log('Conectado');
     })
     .catch(() => {
-        console.log('no se conecto')
+        console.log('No conectado');
     })
-    ;
-export  const getData = {getConnection, sequelizeClient} ;
+
+export const getData = { getConnection, SequelizeClient };
