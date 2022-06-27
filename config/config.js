@@ -5,9 +5,9 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const data = dotenv.config({
-    path: path.resolve(__dirname, `../enviroments/.env.${process.env.NODE_ENV}`)
+    path: path.resolve(__dirname, `../environments/.env.${process.env.NODE_ENV}`)
 })
-
+console.log(process.env.USER)
 export const db = {
     user: data.parsed.USER,
     host: data.parsed.HOST,
